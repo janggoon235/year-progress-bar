@@ -6,8 +6,8 @@
   >
     <div 
       class="w3-container w3-blue w3-round-xlarge" 
-      style="width:25%"
-    >{{percent}}</div>
+      :style="`width:${percent}`"
+    >{{ percent }}</div>
   </div>
 </template>
 
@@ -17,6 +17,14 @@ export default {
   name: 'YearProgressBar',
   setup(){
     let percent = ref('25%');
+    /** 현재시간 */
+    const timeNow = new Date();
+    const currentYearStartPoint = new Date(timeNow.getFullYear(), 0, 1).getTime();
+    const nextYear = new Date(timeNow.getFullYear() + 1, 0, 1).getTime();
+    const lengthOfOneYear = nextYear - currentYearStartPoint;
+    const yearGage = (timeNow.getTime() - currentYearStartPoint)/lengthOfOneYear;
+    percent.value = `${(yearGage*100).toFixed(2)}%`;
+
     return {
       percent
     }
