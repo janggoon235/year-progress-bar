@@ -12,23 +12,10 @@
 </template>
 
 <script lang='ts'>
-import { ref } from 'vue';
 export default {
-  setup(){
-    let percent = ref('25%');
-    const timeNow = new Date();
-    const currentTimeStartPoint = 
-      new Date(
-        timeNow.getFullYear(), 
-        timeNow.getMonth(), 
-        timeNow.getDate(), 
-        timeNow.getHours()
-      ).getTime();
-    const hourGage = (timeNow.getTime() - currentTimeStartPoint)/(1000*60*60);
-    percent.value = `${(hourGage*100).toFixed(2)}%`;
-    return {
-      percent
-    }
-  }
+  name: 'HourProgressBar',
+  props: {
+    percent: String
+  },
 }
 </script>

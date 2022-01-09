@@ -12,19 +12,10 @@
 </template>
 
 <script lang='ts'>
-import { ref } from 'vue';
 export default {
-  setup(){
-    let percent = ref('25%');
-    const timeNow = new Date();
-    const currentDayStartPoint = new Date(timeNow.getFullYear(), timeNow.getMonth(), timeNow.getDate()).getTime();
-    const tommorrow = new Date(timeNow.getFullYear(), timeNow.getMonth(), timeNow.getDate() + 1).getTime();
-    const lengthOfDay = tommorrow - currentDayStartPoint;
-    const dayGage = (timeNow.getTime() - currentDayStartPoint)/lengthOfDay;
-    percent.value = `${(dayGage*100).toFixed(2)}%`;
-    return {
-      percent
-    }
+  name: 'DayProgressBar',
+  props: {
+    percent: String
   }
 }
 </script>

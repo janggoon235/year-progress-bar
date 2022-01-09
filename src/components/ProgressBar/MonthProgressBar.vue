@@ -12,20 +12,10 @@
 </template>
 
 <script lang='ts'>
-import { ref } from 'vue';
 export default {
-  setup(){
-    let percent = ref('25%');
-    const timeNow = new Date();
-    const currentMonthStartPoint = new Date(timeNow.getFullYear(), timeNow.getMonth(), 1).getTime();
-    const nextMonth = new Date(timeNow.getFullYear(), timeNow.getMonth() + 1, 1).getTime();
-    const lengthOfOneMonth = nextMonth - currentMonthStartPoint;
-    const monthGage = (timeNow.getTime() - currentMonthStartPoint)/lengthOfOneMonth;
-    percent.value = `${(monthGage*100).toFixed(2)}%`;
-
-    return {
-      percent
-    }
+  name: 'MonthProgressBar',
+  props: {
+    percent: String
   }
 }
 </script>
